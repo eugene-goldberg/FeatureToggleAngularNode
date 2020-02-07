@@ -747,7 +747,7 @@ var DataService = /** @class */ (function () {
     };
     DataService.prototype.getTest = function () {
         // console.log('API_URL' + environment.ApiUrl);
-        return this._http.get('/getall')
+        return this._http.get('/api/getall')
             .map(function (res) { return res.json(); });
     };
     // solo para demo, el API usado no admite modificaciones salvo que seamos desarrolldores de angular,

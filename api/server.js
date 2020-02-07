@@ -45,7 +45,8 @@ router.get('/', function(req, res) {
 });
 
 router.get('/getall', function(req, res) {
-  res.json({ message: 'this is getall route' });   
+  res.json({ message: 'this is getall route' });  
+  console.log('this is getall api route'); 
 });
 
 const port = process.env.PORT || 4000;

@@ -41,7 +41,7 @@ export class DataService {
 
   getTest() {
     // console.log('API_URL' + environment.ApiUrl);
-    return this._http.get('/getall')
+    return this._http.get('/api/getall')
        .map((res: Response) => res.json());
 }
 

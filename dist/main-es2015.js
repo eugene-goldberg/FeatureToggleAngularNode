@@ -717,7 +717,7 @@ let DataService = class DataService {
     }
     getTest() {
         // console.log('API_URL' + environment.ApiUrl);
-        return this._http.get('/getall')
+        return this._http.get('/api/getall')
             .map((res) => res.json());
     }
     // solo para demo, el API usado no admite modificaciones salvo que seamos desarrolldores de angular,
