@@ -5,6 +5,7 @@ const express = require('express'),
     mongoose = require('mongoose'),
     config = require('./DB');
     var router = express.Router();
+    const request = require('request');
 
 const businessRoute = require('./routes/business.route');
 const getAllRoutes = require('./routes/getall.route');
@@ -41,10 +42,28 @@ app.get('/', function(req, res){
 // });
 
 router.get('/', function(req, res) {
+  console.log('API_URL:  ' + process.env.API_URL);
   res.json({ message: 'hooray! welcome to our api!' });   
 });
 
 router.get('/getall', function(req, res) {
+  res.json({ message: 'this is getall route' });  
+  console.log('this is getall api route'); 
+
+  request(process.env.API_URL, function (error, response, body) {
+    console.log('error:', error); // Print the error if one occurred
+    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    console.log('body:', body); // Print the HTML for the Google homepage.
+  });
+
+});
+
+router.post('/addnew', function(req, res) {
+  //res.json({ message: 'this is getall route' + req.body });  
+  console.log('this is getall route:     ' + req.body.application ); 
+});
+
+router.put('/updateexisting', function(req, res) {
   res.json({ message: 'this is getall route' });  
   console.log('this is getall api route'); 
 });

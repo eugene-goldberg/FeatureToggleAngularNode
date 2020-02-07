@@ -58,7 +58,7 @@ export class DataService {
       feature: feature,  isOn: isOn};
     console.log('Issue content:  ' + this.dialogData);
     // console.log(environment.ApiUrl);
-    this._http.post('/addnew', dataObject).subscribe({
+    this._http.post('/api/addnew', dataObject).subscribe({
       // next: data => this.postId = data.id,
       error: error => console.error('There was an error!', error)
   });
@@ -75,7 +75,7 @@ export class DataService {
     const dataObject = {id: id, application: application, component: component, feature: feature, isOn: isOn};
     // console.log('POST API_URL:   ' + environment.ApiUrl);
     // console.log('Issue content:  ' + this.dialogData);
-    this._http.put('/updatexeisting' + '/' + id, dataObject).subscribe({
+    this._http.put('/api/updateexesting' + '/' + id, dataObject).subscribe({
       error: error => console.error('There was an error!', error)
   });
   }
