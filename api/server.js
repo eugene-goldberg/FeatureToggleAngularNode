@@ -60,11 +60,50 @@ router.get('/getall', function(req, res) {
 
 router.post('/addnew', function(req, res) {
   //res.json({ message: 'this is getall route' + req.body });  
+  request.post(
+    process.env.API_URL,
+    {
+      json: {
+        requestId: req.body.requestId,
+        application: req.body.application,
+        component: req.body.component,
+        feature: req.body.feature,
+        on: req.body.isOn
+      }
+    },
+    (error, res, body) => {
+      if (error) {
+        console.error(error)
+        return
+      }
+      console.log(`statusCode: ${res.statusCode}`)
+      console.log(body)
+    }
+  )
   console.log('this is getall route:     ' + req.body.application ); 
 });
 
 router.put('/updateexisting', function(req, res) {
-  res.json({ message: 'this is getall route' });  
+  request.put(
+    process.env.API_URL,
+    {
+      json: {
+        requestId: req.body.requestId,
+        application: req.body.application,
+        component: req.body.component,
+        feature: req.body.feature,
+        on: req.body.isOn
+      }
+    },
+    (error, res, body) => {
+      if (error) {
+        console.error(error)
+        return
+      }
+      console.log(`statusCode: ${res.statusCode}`)
+      console.log(body)
+    }
+  ) 
   console.log('this is getall api route'); 
 });
 
