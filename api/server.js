@@ -6,9 +6,9 @@ const express = require('express'),
     config = require('./DB');
     var router = express.Router();
     const request = require('request');
-
 const businessRoute = require('./routes/business.route');
 const getAllRoutes = require('./routes/getall.route');
+
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
   () => {console.log('Database is connected') },
@@ -93,22 +93,19 @@ router.post('/search', function(req, res) {
     {
       json: {
                requestId: req.body.requestId,
-               toggles:   [{ 
-                  application: req.body.application,
-                  component: req.body.component,
-                  feature: req.body.feature,
-                  
-                  on: req.body.isOn
-                }]
+               application: req.body.application,
+               component: req.body.component,
+               feature: req.body.feature,
+               on: req.body.isOn
       }
     },
-    (error, res, body) => {
+    (error, response, body) => {
       if (error) {
         console.error(error)
         return
       }
       res.status(201).json(body);
-      console.log(`statusCode: ${res.statusCode}`)
+      console.log(`statusCode: ${response.statusCode}`)
       console.log(body)
     }
   )
