@@ -748,7 +748,7 @@ let DataService = class DataService {
         const dataObject = { id: id, application: application, component: component, feature: feature, isOn: isOn };
         // console.log('POST API_URL:   ' + environment.ApiUrl);
         // console.log('Issue content:  ' + this.dialogData);
-        this._http.put('/api/updateexesting' + '/' + id, dataObject).subscribe({
+        this._http.post('/api/addnew', dataObject).subscribe({
             error: error => console.error('There was an error!', error)
         });
     }
@@ -821,7 +821,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 const environment = {
     production: false,
-    ApiUrl: "http://google.com"
+    ApiUrl: undefined
 };
 
 

@@ -41,10 +41,10 @@ app.get('/', function(req, res){
 //   console.log('/getall');
 // });
 
-router.get('/', function(req, res) {
-  console.log('API_URL:  ' + process.env.API_URL);
-  res.json({ message: 'hooray! welcome to our api!' });   
-});
+// router.get('/', function(req, res) {
+//   console.log('API_URL:  ' + process.env.API_URL);
+//   res.json({ message: 'hooray! welcome to our api!' });   
+// });
 
 router.get('/getall', function(req, res) {
   res.json({ message: 'this is getall route' });  
@@ -61,15 +61,28 @@ router.get('/getall', function(req, res) {
 router.post('/addnew', function(req, res) {
   //res.json({ message: 'this is getall route' + req.body });  
   request.post(
-    process.env.API_URL,
+    process.env.API_URL + '/toggle',
     {
       json: {
-        requestId: req.body.requestId,
-        application: req.body.application,
-        component: req.body.component,
-        feature: req.body.feature,
-        on: req.body.isOn
+               requestId: req.body.requestId,
+               toggles:   [{ 
+                  application: req.body.application,
+                  component: req.body.component,
+                  feature: req.body.feature,
+                  
+                  on: req.body.isOn
+                }]
       }
+
+
+      // [{
+      //   requestId: req.body.requestId,
+      //   application: req.body.application,
+      //   component: req.body.component,
+      //   feature: req.body.feature,
+        
+      //   on: req.body.isOn
+      // }]
     },
     (error, res, body) => {
       if (error) {
