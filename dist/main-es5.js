@@ -137,7 +137,15 @@ var AppComponent = /** @class */ (function () {
         });
     };
     AppComponent.prototype.onSubmit = function () {
-        this.dataService.doSearch(this.model);
+        var _this = this;
+        this.dataService.doSearch(this.model)
+            .subscribe(function (data) {
+            var ds = JSON.stringify(data[0]);
+            _this.myDs = data; // FILL THE ARRAY WITH DATA.
+            console.log(ds);
+        }, function (err) {
+            console.log(err.message);
+        });
     };
     // refresh() {
     //   this.loadData();
@@ -717,12 +725,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
 /* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm5/add/operator/map.js");
 /* harmony import */ var rxjs_Rx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/Rx */ "./node_modules/rxjs-compat/_esm5/Rx.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 
 
 
 
 
 // tslint:disable-next-line:import-blacklist
+
 
 var DataService = /** @class */ (function () {
     // constructor (private httpClient: HttpClient, private _http: Http) {}
@@ -765,12 +775,8 @@ var DataService = /** @class */ (function () {
         var isOn = this.dialogData['isOn'];
         var dataObject = { requestId: requestId, application: application, component: component,
             feature: feature, isOn: isOn };
-        console.log('Issue content:  ' + this.dialogData);
-        // console.log(environment.ApiUrl);
-        this._http.post('/api/search', dataObject).subscribe({
-            // next: data => this.postId = data.id,
-            error: function (error) { return console.error('There was an error!', error); }
-        });
+        return this._http.post('/api/search', dataObject)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (res) { return res.json(); }));
     };
     // solo para demo, el API usado no admite modificaciones salvo que seamos desarrolldores de angular,
     // por lo que los metodos no hacen nada
@@ -913,7 +919,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/eugene/dev/node/FeatureToggleAngualrNode/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /private/tmp/FeatureToggleAngularNode/src/main.ts */"./src/main.ts");
 
 
 /***/ })

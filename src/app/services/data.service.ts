@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment'
 import 'rxjs/add/operator/map';
 // tslint:disable-next-line:import-blacklist
 import 'rxjs/Rx';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class DataService {
@@ -16,6 +17,7 @@ export class DataService {
   dataChange: BehaviorSubject<Issue[]> = new BehaviorSubject<Issue[]>([]);
   // Almaceno temporalmente los datos del dialogo
   dialogData: any;
+  searchResponceData: any;
 
   // constructor (private httpClient: HttpClient, private _http: Http) {}
 
@@ -45,7 +47,7 @@ export class DataService {
        .map((res: Response) => res.json());
 }
 
-doSearch (issue: Issue): void {
+doSearch (issue: Issue): any {
   this.dialogData = issue;
   const requestId = this.dialogData['requestId'];
   const application = this.dialogData['application'];
@@ -54,13 +56,13 @@ doSearch (issue: Issue): void {
   const isOn = this.dialogData['isOn'];
   const dataObject = {requestId: requestId, application: application, component: component,
     feature: feature,  isOn: isOn};
-  console.log('Issue content:  ' + this.dialogData);
-  // console.log(environment.ApiUrl);
-  this._http.post('/api/search', dataObject).subscribe({
-    // next: data => this.postId = data.id,
-    error: error => console.error('There was an error!', error)
-});
-
+  return this._http.post('/api/search', dataObject)
+  .pipe(map((res: Response) => res.json()))
+//   .subscribe({
+//   // next: data => this.searchResponceData = data.json,
+//     error: error => console.error('There was an error!', error),
+// })
+;
 }
 
   // solo para demo, el API usado no admite modificaciones salvo que seamos desarrolldores de angular,

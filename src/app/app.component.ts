@@ -56,7 +56,17 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit() {
-    this.dataService.doSearch(this.model);
+    this.dataService.doSearch(this.model)
+    .subscribe(
+      data => {
+        const ds = JSON.stringify(data[0]);
+     this.myDs = data;	 // FILL THE ARRAY WITH DATA.
+      console.log(ds);
+   },
+   (err: HttpErrorResponse) => {
+     console.log (err.message);
+   }
+ );
   }
 
   // refresh() {

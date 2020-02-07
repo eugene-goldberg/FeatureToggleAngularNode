@@ -89,7 +89,8 @@ router.post('/addnew', function(req, res) {
 router.post('/search', function(req, res) {
   //res.json({ message: 'this is getall route' + req.body });  
   request.post(
-    process.env.API_URL + '/list',
+   // process.env.API_URL + '/list',
+    'http://localhost:8080/example/v1/hotels' + '/list',
     {
       json: {
                requestId: req.body.requestId,

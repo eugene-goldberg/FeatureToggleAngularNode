@@ -136,7 +136,14 @@ let AppComponent = class AppComponent {
         });
     }
     onSubmit() {
-        this.dataService.doSearch(this.model);
+        this.dataService.doSearch(this.model)
+            .subscribe(data => {
+            const ds = JSON.stringify(data[0]);
+            this.myDs = data; // FILL THE ARRAY WITH DATA.
+            console.log(ds);
+        }, (err) => {
+            console.log(err.message);
+        });
     }
     // refresh() {
     //   this.loadData();
@@ -691,12 +698,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm2015/http.js");
 /* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm2015/add/operator/map.js");
 /* harmony import */ var rxjs_Rx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/Rx */ "./node_modules/rxjs-compat/_esm2015/Rx.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 
 
 
 
 
 // tslint:disable-next-line:import-blacklist
+
 
 let DataService = class DataService {
     // constructor (private httpClient: HttpClient, private _http: Http) {}
@@ -735,12 +744,8 @@ let DataService = class DataService {
         const isOn = this.dialogData['isOn'];
         const dataObject = { requestId: requestId, application: application, component: component,
             feature: feature, isOn: isOn };
-        console.log('Issue content:  ' + this.dialogData);
-        // console.log(environment.ApiUrl);
-        this._http.post('/api/search', dataObject).subscribe({
-            // next: data => this.postId = data.id,
-            error: error => console.error('There was an error!', error)
-        });
+        return this._http.post('/api/search', dataObject)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])((res) => res.json()));
     }
     // solo para demo, el API usado no admite modificaciones salvo que seamos desarrolldores de angular,
     // por lo que los metodos no hacen nada
@@ -882,7 +887,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/eugene/dev/node/FeatureToggleAngualrNode/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /private/tmp/FeatureToggleAngularNode/src/main.ts */"./src/main.ts");
 
 
 /***/ })
