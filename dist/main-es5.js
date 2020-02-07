@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"primary\">\n  <span>Feature Toggle</span>\n  <span class=\"spacer\"></span>\n  <!-- Reload data:\n  <button mat-icon-button (click)=\"refresh()\">\n    <mat-icon>refresh</mat-icon>\n  </button> -->\n</mat-toolbar>\n\n<div class=\"container mat-elevation-z8\">\n\n  <!-- <div class=\"form\">\n    <mat-form-field floatPlaceholder=\"never\" color=\"accent\">\n      <input matInput #filter placeholder=\"Filter issues\">\n    </mat-form-field>\n  </div> -->\n\n  <mat-table #table [dataSource]=\"myDs\" matSort class=\"mat-cell\">\n    ng update @angular/cli @angular/core\n    <!--- Note that these columns can be defined in any order.\n          The actual rendered columns are set as a property on the row definition\" -->\n\n    <!-- ID Column -->\n    <ng-container matColumnDef=\"requestId\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Request ID</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\" >{{row.id}}</mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"application\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Application</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\"> {{row.application}}</mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"component\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Component</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\"> {{row.component}}</mat-cell>\n    </ng-container>\n\n    <!-- <ng-container matColumnDef=\"url\">\n      <mat-checkbox\n          class=\"example-margin\"\n          [(ngModel)]=\"checked\"\n          [(indeterminate)]=\"indeterminate\"\n          [labelPosition]=\"labelPosition\"\n          [disabled]=\"disabled\">\n        I'm a checkbox\n      </mat-checkbox>\n    </ng-container> -->\n\n    <ng-container matColumnDef=\"on\">\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> On /Off </th>\n      <td mat-cell *matCellDef=\"let row\">\n        <mat-checkbox [checked]=row.isOn>\n        </mat-checkbox>\n      </td>\n    </ng-container>\n\n    \n\n    <ng-container matColumnDef=\"feature\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Feature</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\"> {{row.feature}}</mat-cell>\n    </ng-container>\n\n\n    <!-- actions -->\n    <ng-container matColumnDef=\"actions\">\n      <mat-header-cell *matHeaderCellDef>\n        <button mat-icon-button color=\"primary\" (click)=\"addNew()\">\n          <mat-icon aria-label=\"Example icon-button with a heart icon\">add</mat-icon>\n        </button>\n      </mat-header-cell>\n\n      <mat-cell *matCellDef=\"let row; let i=index;\">\n        <button mat-icon-button color=\"accent\" (click)=\"startEdit(i, row.id, row.application, row.component, row.feature, row.isOn)\">\n          <mat-icon aria-label=\"Edit\">edit</mat-icon>\n        </button>\n\n        <button mat-icon-button color=\"accent\" (click)=\"deleteItem(i, row.id, row.application, row.component, row.feature, row.isOn)\">\n          <mat-icon aria-label=\"Delete\">delete</mat-icon>\n        </button>\n      </mat-cell>\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n  </mat-table>\n\n\n  <!-- <div class=\"no-results\" [style.display]=\"dataSource.renderedData.length == 0 ? '' : 'none'\">\n    No results\n  </div> -->\n\n  <!-- <mat-paginator #paginator\n                 [length]=\"dataSource.filteredData.length\"\n                 [pageIndex]=\"0\"\n                 [pageSize]=\"10\"\n                 [pageSizeOptions]=\"[5, 10, 25, 100]\">\n  </mat-paginator> -->\n</div>\n"
+module.exports = "<mat-toolbar color=\"primary\">\n  <span>Feature Toggle</span>\n  <span class=\"spacer\"></span>\n  <!-- Reload data:\n  <button mat-icon-button (click)=\"refresh()\">\n    <mat-icon>refresh</mat-icon>\n  </button> -->\n</mat-toolbar>\n\n<form class=\"formwidth\" (ngSubmit)=\"onSubmit()\" #myForm=\"ngForm\">\n  <table class=\"fullwidth\" cellspacing=\"10\" >\n      <tr>\n          <td>\n              <mat-form-field class=\"fullwidth\">\n                  <input matInput placeholder=\"Request ID\" id=\"requestId\" [(ngModel)]=\"model.requestId\" name=\"requestId\">\n              </mat-form-field>\n          </td>\n          <td>\n              <mat-form-field class=\"fullwidth\">\n                  <input matInput placeholder=\"Application\" id=\"application\" [(ngModel)]=\"model.application\" name=\"application\">\n              </mat-form-field>\n          </td>\n      \n  \n  <p>\n      <mat-form-field class=\"fullwidth\">\n          <input matInput placeholder=\"Component\" id=\"component\" [(ngModel)]=\"model.component\" name=\"component\">\n      </mat-form-field>\n  </p>\n      \n          <td>\n              <mat-form-field class=\"fullwidth\">\n                  <input matInput placeholder=\"Feature\" id=\"feature\" [(ngModel)]=\"model.feature\" name=\"feature\">\n              </mat-form-field>\n          </td>\n          \n          <td>\n            <mat-checkbox [checked]=model.isOn>\n            </mat-checkbox>\n          </td>\n\n          <p>\n            <button mat-button type=\"submit\" md-raised-button>Search</button>\n        </p>\n      </tr>\n  </table>\n</form>\n\n<div class=\"container mat-elevation-z8\">\n\n  <!-- <div class=\"form\">\n    <mat-form-field floatPlaceholder=\"never\" color=\"accent\">\n      <input matInput #filter placeholder=\"Filter issues\">\n    </mat-form-field>\n  </div> -->\n\n  <mat-table #table [dataSource]=\"myDs\" matSort class=\"mat-cell\">\n    ng update @angular/cli @angular/core\n    <!--- Note that these columns can be defined in any order.\n          The actual rendered columns are set as a property on the row definition\" -->\n\n    <!-- ID Column -->\n    <ng-container matColumnDef=\"requestId\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Request ID</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\" >{{row.id}}</mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"application\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Application</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\"> {{row.application}}</mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"component\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Component</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\"> {{row.component}}</mat-cell>\n    </ng-container>\n\n    <!-- <ng-container matColumnDef=\"url\">\n      <mat-checkbox\n          class=\"example-margin\"\n          [(ngModel)]=\"checked\"\n          [(indeterminate)]=\"indeterminate\"\n          [labelPosition]=\"labelPosition\"\n          [disabled]=\"disabled\">\n        I'm a checkbox\n      </mat-checkbox>\n    </ng-container> -->\n\n    <ng-container matColumnDef=\"on\">\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> On /Off </th>\n      <td mat-cell *matCellDef=\"let row\">\n        <mat-checkbox [checked]=row.isOn>\n        </mat-checkbox>\n      </td>\n    </ng-container>\n\n    \n\n    <ng-container matColumnDef=\"feature\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Feature</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\"> {{row.feature}}</mat-cell>\n    </ng-container>\n\n\n    <!-- actions -->\n    <ng-container matColumnDef=\"actions\">\n      <mat-header-cell *matHeaderCellDef>\n        <button mat-icon-button color=\"primary\" (click)=\"addNew()\">\n          <mat-icon aria-label=\"Example icon-button with a heart icon\">add</mat-icon>\n        </button>\n      </mat-header-cell>\n\n      <mat-cell *matCellDef=\"let row; let i=index;\">\n        <button mat-icon-button color=\"accent\" (click)=\"startEdit(i, row.id, row.application, row.component, row.feature, row.isOn)\">\n          <mat-icon aria-label=\"Edit\">edit</mat-icon>\n        </button>\n\n        <button mat-icon-button color=\"accent\" (click)=\"deleteItem(i, row.id, row.application, row.component, row.feature, row.isOn)\">\n          <mat-icon aria-label=\"Delete\">delete</mat-icon>\n        </button>\n      </mat-cell>\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n  </mat-table>\n\n\n  <!-- <div class=\"no-results\" [style.display]=\"dataSource.renderedData.length == 0 ? '' : 'none'\">\n    No results\n  </div> -->\n\n  <!-- <mat-paginator #paginator\n                 [length]=\"dataSource.filteredData.length\"\n                 [pageIndex]=\"0\"\n                 [pageSize]=\"10\"\n                 [pageSizeOptions]=\"[5, 10, 25, 100]\">\n  </mat-paginator> -->\n</div>\n"
 
 /***/ }),
 
@@ -96,12 +96,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
 /* harmony import */ var _angular_material_paginator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/paginator */ "./node_modules/@angular/material/esm5/paginator.es5.js");
 /* harmony import */ var _angular_material_sort__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/sort */ "./node_modules/@angular/material/esm5/sort.es5.js");
-/* harmony import */ var _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/cdk/collections */ "./node_modules/@angular/cdk/esm5/collections.es5.js");
-/* harmony import */ var _dialogs_add_add_dialog_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./dialogs/add/add.dialog.component */ "./src/app/dialogs/add/add.dialog.component.ts");
-/* harmony import */ var _dialogs_edit_edit_dialog_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./dialogs/edit/edit.dialog.component */ "./src/app/dialogs/edit/edit.dialog.component.ts");
-/* harmony import */ var _dialogs_delete_delete_dialog_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./dialogs/delete/delete.dialog.component */ "./src/app/dialogs/delete/delete.dialog.component.ts");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _models_issue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./models/issue */ "./src/app/models/issue.ts");
+/* harmony import */ var _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/cdk/collections */ "./node_modules/@angular/cdk/esm5/collections.es5.js");
+/* harmony import */ var _dialogs_add_add_dialog_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./dialogs/add/add.dialog.component */ "./src/app/dialogs/add/add.dialog.component.ts");
+/* harmony import */ var _dialogs_edit_edit_dialog_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./dialogs/edit/edit.dialog.component */ "./src/app/dialogs/edit/edit.dialog.component.ts");
+/* harmony import */ var _dialogs_delete_delete_dialog_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./dialogs/delete/delete.dialog.component */ "./src/app/dialogs/delete/delete.dialog.component.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
 
 
 
@@ -121,6 +123,7 @@ var AppComponent = /** @class */ (function () {
         this.dialog = dialog;
         this.dataService = dataService;
         this.displayedColumns = ['requestId', 'application', 'component', 'feature', 'on', 'actions'];
+        this.model = new _models_issue__WEBPACK_IMPORTED_MODULE_7__["Issue"]();
     }
     AppComponent.prototype.ngOnInit = function () {
         // this.loadData();
@@ -133,12 +136,15 @@ var AppComponent = /** @class */ (function () {
             console.log(err.message);
         });
     };
+    AppComponent.prototype.onSubmit = function () {
+        this.dataService.doSearch(this.model);
+    };
     // refresh() {
     //   this.loadData();
     // }
     AppComponent.prototype.addNew = function (issue) {
         var _this = this;
-        var dialogRef = this.dialog.open(_dialogs_add_add_dialog_component__WEBPACK_IMPORTED_MODULE_8__["AddDialogComponent"], {
+        var dialogRef = this.dialog.open(_dialogs_add_add_dialog_component__WEBPACK_IMPORTED_MODULE_9__["AddDialogComponent"], {
             data: { issue: issue }
         });
         dialogRef.afterClosed().subscribe(function (result) {
@@ -163,7 +169,7 @@ var AppComponent = /** @class */ (function () {
         // index row is used just for debugging proposes and can be removed
         this.index = i;
         console.log(this.index);
-        var dialogRef = this.dialog.open(_dialogs_edit_edit_dialog_component__WEBPACK_IMPORTED_MODULE_9__["EditDialogComponent"], {
+        var dialogRef = this.dialog.open(_dialogs_edit_edit_dialog_component__WEBPACK_IMPORTED_MODULE_10__["EditDialogComponent"], {
             data: { id: id, application: application, component: component, feature: feature, isOn: isOn }
         });
         dialogRef.afterClosed().subscribe(function (result) {
@@ -188,7 +194,7 @@ var AppComponent = /** @class */ (function () {
         var _this = this;
         this.index = i;
         this.id = id;
-        var dialogRef = this.dialog.open(_dialogs_delete_delete_dialog_component__WEBPACK_IMPORTED_MODULE_10__["DeleteDialogComponent"], {
+        var dialogRef = this.dialog.open(_dialogs_delete_delete_dialog_component__WEBPACK_IMPORTED_MODULE_11__["DeleteDialogComponent"], {
             data: { id: id, application: application, component: component, isOn: isOn }
         });
         dialogRef.afterClosed().subscribe(function (result) {
@@ -271,7 +277,7 @@ var ExampleDataSource = /** @class */ (function (_super) {
         _this._exampleDatabase = _exampleDatabase;
         _this._paginator = _paginator;
         _this._sort = _sort;
-        _this._filterChange = new rxjs__WEBPACK_IMPORTED_MODULE_11__["BehaviorSubject"]('');
+        _this._filterChange = new rxjs__WEBPACK_IMPORTED_MODULE_12__["BehaviorSubject"]('');
         _this.filteredData = [];
         _this.renderedData = [];
         // Reset to the first page when the user changes the filter.
@@ -299,7 +305,7 @@ var ExampleDataSource = /** @class */ (function (_super) {
             this._paginator.page
         ];
         this._exampleDatabase.getAllIssues();
-        return rxjs__WEBPACK_IMPORTED_MODULE_11__["merge"].apply(void 0, tslib__WEBPACK_IMPORTED_MODULE_0__["__spread"](displayDataChanges)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_12__["map"])(function () {
+        return rxjs__WEBPACK_IMPORTED_MODULE_12__["merge"].apply(void 0, tslib__WEBPACK_IMPORTED_MODULE_0__["__spread"](displayDataChanges)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_13__["map"])(function () {
             // Filter data
             _this.filteredData = _this._exampleDatabase.data.slice().filter(function (issue) {
                 var searchStr = (issue.id + issue.application.toLowerCase());
@@ -349,7 +355,7 @@ var ExampleDataSource = /** @class */ (function (_super) {
         { type: _angular_material_sort__WEBPACK_IMPORTED_MODULE_6__["MatSort"] }
     ]; };
     return ExampleDataSource;
-}(_angular_cdk_collections__WEBPACK_IMPORTED_MODULE_7__["DataSource"]));
+}(_angular_cdk_collections__WEBPACK_IMPORTED_MODULE_8__["DataSource"]));
 
 
 
@@ -749,6 +755,22 @@ var DataService = /** @class */ (function () {
         // console.log('API_URL' + environment.ApiUrl);
         return this._http.get('/api/getall')
             .map(function (res) { return res.json(); });
+    };
+    DataService.prototype.doSearch = function (issue) {
+        this.dialogData = issue;
+        var requestId = this.dialogData['requestId'];
+        var application = this.dialogData['application'];
+        var component = this.dialogData['component'];
+        var feature = this.dialogData['feature'];
+        var isOn = this.dialogData['isOn'];
+        var dataObject = { requestId: requestId, application: application, component: component,
+            feature: feature, isOn: isOn };
+        console.log('Issue content:  ' + this.dialogData);
+        // console.log(environment.ApiUrl);
+        this._http.post('/api/search', dataObject).subscribe({
+            // next: data => this.postId = data.id,
+            error: function (error) { return console.error('There was an error!', error); }
+        });
     };
     // solo para demo, el API usado no admite modificaciones salvo que seamos desarrolldores de angular,
     // por lo que los metodos no hacen nada

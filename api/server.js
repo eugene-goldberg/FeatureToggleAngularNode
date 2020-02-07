@@ -46,7 +46,7 @@ app.get('/', function(req, res){
 //   res.json({ message: 'hooray! welcome to our api!' });   
 // });
 
-router.get('/getall', function(req, res) {
+router.get('/search', function(req, res) {
   res.json({ message: 'this is getall route' });  
   console.log('this is getall api route'); 
 
@@ -62,6 +62,45 @@ router.post('/addnew', function(req, res) {
   //res.json({ message: 'this is getall route' + req.body });  
   request.post(
     process.env.API_URL + '/toggle',
+    {
+      json: {
+               requestId: req.body.requestId,
+               toggles:   [{ 
+                  application: req.body.application,
+                  component: req.body.component,
+                  feature: req.body.feature,
+                  
+                  on: req.body.isOn
+                }]
+      }
+
+
+      // [{
+      //   requestId: req.body.requestId,
+      //   application: req.body.application,
+      //   component: req.body.component,
+      //   feature: req.body.feature,
+        
+      //   on: req.body.isOn
+      // }]
+    },
+    (error, res, body) => {
+      if (error) {
+        console.error(error)
+        return
+      }
+      console.log(`statusCode: ${res.statusCode}`)
+      console.log(body)
+    }
+  )
+  console.log('this is getall route:     ' + req.body.application ); 
+});
+
+router.post('/search', function(req, res) {
+  //res.json({ message: 'this is getall route' + req.body });  
+  console.log('node doSearch with url & data:  ' + process.env.API_URL + '/list' + req.body.requestId + '  ' + req.body.application);
+  request.post(
+    process.env.API_URL + '/list',
     {
       json: {
                requestId: req.body.requestId,

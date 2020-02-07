@@ -26,10 +26,15 @@ export class AppComponent implements OnInit {
   index: number;
   id: number;
   myDs: any;
+  searchData: {};
+  model: Issue;
 
   constructor(public httpClient: HttpClient,
               public dialog: MatDialog,
-              public dataService: DataService) {}
+              public dataService: DataService) {
+
+                this.model = new Issue();
+              }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -48,6 +53,10 @@ export class AppComponent implements OnInit {
      console.log (err.message);
    }
  );
+  }
+
+  onSubmit() {
+    this.dataService.doSearch(this.model);
   }
 
   // refresh() {

@@ -45,6 +45,24 @@ export class DataService {
        .map((res: Response) => res.json());
 }
 
+doSearch (issue: Issue): void {
+  this.dialogData = issue;
+  const requestId = this.dialogData['requestId'];
+  const application = this.dialogData['application'];
+  const component = this.dialogData['component'];
+  const feature = this.dialogData['feature'];
+  const isOn = this.dialogData['isOn'];
+  const dataObject = {requestId: requestId, application: application, component: component,
+    feature: feature,  isOn: isOn};
+  console.log('Issue content:  ' + this.dialogData);
+  // console.log(environment.ApiUrl);
+  this._http.post('/api/search', dataObject).subscribe({
+    // next: data => this.postId = data.id,
+    error: error => console.error('There was an error!', error)
+});
+
+}
+
   // solo para demo, el API usado no admite modificaciones salvo que seamos desarrolldores de angular,
   // por lo que los metodos no hacen nada
   addIssue (issue: Issue): void {

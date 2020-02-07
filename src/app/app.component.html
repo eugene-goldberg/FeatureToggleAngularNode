@@ -7,6 +7,45 @@
   </button> -->
 </mat-toolbar>
 
+<form class="formwidth" (ngSubmit)="onSubmit()" #myForm="ngForm">
+  <table class="fullwidth" cellspacing="10" >
+      <tr>
+          <td>
+              <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Request ID" id="requestId" [(ngModel)]="model.requestId" name="requestId">
+              </mat-form-field>
+          </td>
+          <td>
+              <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Application" id="application" [(ngModel)]="model.application" name="application">
+              </mat-form-field>
+          </td>
+      
+  
+  <p>
+      <mat-form-field class="fullwidth">
+          <input matInput placeholder="Component" id="component" [(ngModel)]="model.component" name="component">
+      </mat-form-field>
+  </p>
+      
+          <td>
+              <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Feature" id="feature" [(ngModel)]="model.feature" name="feature">
+              </mat-form-field>
+          </td>
+          
+          <td>
+            <mat-checkbox [checked]=model.isOn>
+            </mat-checkbox>
+          </td>
+
+          <p>
+            <button mat-button type="submit" md-raised-button>Search</button>
+        </p>
+      </tr>
+  </table>
+</form>
+
 <div class="container mat-elevation-z8">
 
   <!-- <div class="form">
