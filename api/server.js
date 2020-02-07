@@ -59,7 +59,8 @@ router.get('/search', function(req, res) {
 });
 
 router.post('/addnew', function(req, res) {
-  //res.json({ message: 'this is getall route' + req.body });  
+  //res.json({ message: 'this is getall route' + req.body }); 
+  console.log('on:   ' + req.body.on); 
   request.post(
     process.env.API_URL + '/toggle',
     {
@@ -70,7 +71,7 @@ router.post('/addnew', function(req, res) {
                   component: req.body.component,
                   feature: req.body.feature,
                   
-                  on: req.body.isOn
+                  on: req.body.on
                 }]
       }
     },
@@ -90,14 +91,14 @@ router.post('/search', function(req, res) {
   //res.json({ message: 'this is getall route' + req.body });  
   request.post(
    // process.env.API_URL + '/list',
-    'http://localhost:8080/example/v1/hotels' + '/list',
+   process.env.API_URL + '/list',
     {
       json: {
                requestId: req.body.requestId,
                application: req.body.application,
                component: req.body.component,
                feature: req.body.feature,
-               on: req.body.isOn
+               on: req.body.on
       }
     },
     (error, response, body) => {
@@ -166,7 +167,7 @@ router.put('/updateexisting', function(req, res) {
         application: req.body.application,
         component: req.body.component,
         feature: req.body.feature,
-        on: req.body.isOn
+        on: req.body.on
       }
     },
     (error, res, body) => {

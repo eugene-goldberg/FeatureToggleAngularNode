@@ -3,5 +3,5 @@ export class Issue {
   application: string;
   component: string;
   feature: string;
-  isOn: boolean;
+  on: boolean;
 }

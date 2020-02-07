@@ -53,9 +53,10 @@ doSearch (issue: Issue): any {
   const application = this.dialogData['application'];
   const component = this.dialogData['component'];
   const feature = this.dialogData['feature'];
-  const isOn = this.dialogData['isOn'];
+  const on = this.dialogData['on'] || false;
+
   const dataObject = {requestId: requestId, application: application, component: component,
-    feature: feature,  isOn: isOn};
+    feature: feature,  on: on};
   return this._http.post('/api/search', dataObject)
   .pipe(map((res: Response) => res.json()))
 //   .subscribe({
@@ -73,9 +74,9 @@ doSearch (issue: Issue): any {
     const application = this.dialogData['application'];
     const component = this.dialogData['component'];
     const feature = this.dialogData['feature'];
-    const isOn = this.dialogData['isOn'];
-    const dataObject = {requestId: requestId, application: application, component: component,
-      feature: feature,  isOn: isOn};
+    const on = this.dialogData['on'];
+    const dataObject = {requestIond: requestId, application: application, component: component,
+      feature: feature,  on: on};
     console.log('Issue content:  ' + this.dialogData);
     // console.log(environment.ApiUrl);
     this._http.post('/api/addnew', dataObject).subscribe({
@@ -91,8 +92,8 @@ doSearch (issue: Issue): any {
     const application = this.dialogData['application'];
     const component = this.dialogData['component'];
     const feature = this.dialogData['feature'];
-    const isOn = this.dialogData['isOn']; 
-    const dataObject = {id: id, application: application, component: component, feature: feature, isOn: isOn};
+    const on = this.dialogData['on'];
+    const dataObject = {id: id, application: application, component: component, feature: feature, on: on};
     // console.log('POST API_URL:   ' + environment.ApiUrl);
     // console.log('Issue content:  ' + this.dialogData);
     this._http.post('/api/addnew', dataObject).subscribe({

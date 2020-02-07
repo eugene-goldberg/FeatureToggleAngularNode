@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
     .subscribe(
       data => {
         const ds = JSON.stringify(data[0]);
-     this.myDs = data;	 // FILL THE ARRAY WITH DATA.
+     this.myDs = data;
       console.log(ds);
    },
    (err: HttpErrorResponse) => {
@@ -99,13 +99,13 @@ export class AppComponent implements OnInit {
     });
   }
 
-  startEdit(i: number, id: number, application: string, component: string, feature: string, isOn: boolean) {
+  startEdit(i: number, id: number, application: string, component: string, feature: string, on: boolean) {
     this.id = id;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     console.log(this.index);
     const dialogRef = this.dialog.open(EditDialogComponent, {
-      data: {id: id, application: application, component: component, feature: feature, isOn: isOn}
+      data: {id: id, application: application, component: component, feature: feature, on: on}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -132,11 +132,11 @@ export class AppComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, id: number, application: string, component: string, feature: string, isOn: boolean) {
+  deleteItem(i: number, id: number, application: string, component: string, feature: string, on: boolean) {
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: {id: id, application: application, component: component, isOn: isOn}
+      data: {id: id, application: application, component: component, on: on}
     });
 
     dialogRef.afterClosed().subscribe(result => {
