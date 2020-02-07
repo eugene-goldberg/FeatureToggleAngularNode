@@ -73,16 +73,6 @@ router.post('/addnew', function(req, res) {
                   on: req.body.isOn
                 }]
       }
-
-
-      // [{
-      //   requestId: req.body.requestId,
-      //   application: req.body.application,
-      //   component: req.body.component,
-      //   feature: req.body.feature,
-        
-      //   on: req.body.isOn
-      // }]
     },
     (error, res, body) => {
       if (error) {
@@ -98,7 +88,6 @@ router.post('/addnew', function(req, res) {
 
 router.post('/search', function(req, res) {
   //res.json({ message: 'this is getall route' + req.body });  
-  console.log('node doSearch with url & data:  ' + process.env.API_URL + '/list' + req.body.requestId + '  ' + req.body.application);
   request.post(
     process.env.API_URL + '/list',
     {
@@ -112,28 +101,63 @@ router.post('/search', function(req, res) {
                   on: req.body.isOn
                 }]
       }
-
-
-      // [{
-      //   requestId: req.body.requestId,
-      //   application: req.body.application,
-      //   component: req.body.component,
-      //   feature: req.body.feature,
-        
-      //   on: req.body.isOn
-      // }]
     },
     (error, res, body) => {
       if (error) {
         console.error(error)
         return
       }
+      res.status(201).json(body);
       console.log(`statusCode: ${res.statusCode}`)
       console.log(body)
     }
   )
   console.log('this is getall route:     ' + req.body.application ); 
 });
+
+// router.post('/search', function(req, res, body) {
+//   //res.json({ message: 'this is getall route' + req.body });  
+//   console.log('node doSearch with url & data:  ' + process.env.API_URL + '/list' + req.body.requestId + '  ' + req.body.application);
+//   request.post(
+//     process.env.API_URL + '/list',
+//     {
+//       json: {
+//                requestId: req.body.requestId,
+//                toggles:   [{ 
+//                   application: req.body.application,
+//                   component: req.body.component,
+//                   feature: req.body.feature,
+                  
+//                   on: req.body.isOn
+//                 }]
+//       }, function(req, res){
+//         res.status(201).json(body);
+//         console.log('POST response body:  ' + body);
+//       }
+//     );
+
+
+//       // [{
+//       //   requestId: req.body.requestId,
+//       //   application: req.body.application,
+//       //   component: req.body.component,
+//       //   feature: req.body.feature,
+        
+//       //   on: req.body.isOn
+//       // }]
+// //     },
+// //     (error, res, body) => {
+// //       if (error) {
+// //         console.error(error)
+// //         return
+// //       }
+// //       console.log(`statusCode: ${res.statusCode}`)
+// //       console.log(body)
+// //       res.status(201).json();
+// //     }
+// //   )
+// //   console.log('this is getall route:     ' + req.body.application ); 
+// // });
 
 router.put('/updateexisting', function(req, res) {
   request.put(
