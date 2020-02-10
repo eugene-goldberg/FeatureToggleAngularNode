@@ -9,11 +9,11 @@ const express = require('express'),
 const businessRoute = require('./routes/business.route');
 const getAllRoutes = require('./routes/getall.route');
 
-// mongoose.Promise = global.Promise;
-// mongoose.connect(config.DB, { useNewUrlParser: true }).then(
-//   () => {console.log('Database is connected') },
-//   err => { console.log('Cannot connect to the database'+ err)}
-// );
+mongoose.Promise = global.Promise;
+mongoose.connect(config.DB, { useNewUrlParser: true }).then(
+  () => {console.log('Database is connected') },
+  err => { console.log('Cannot connect to the database'+ err)}
+);
 var version=process.env.version || "1.0"
 
 const app = express();
