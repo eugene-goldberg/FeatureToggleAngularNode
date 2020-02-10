@@ -106,7 +106,7 @@ router.post('/search', function(req, res) {
         console.error(error)
         return
       }
-      res.status(201).json(body);
+      res.status(201).json(body['toggles'] || []);
       console.log(`statusCode: ${response.statusCode}`)
       console.log(body)
     }
