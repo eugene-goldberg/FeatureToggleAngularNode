@@ -53,7 +53,7 @@ doSearch (issue: Issue): any {
   const application = this.dialogData['application'];
   const component = this.dialogData['component'];
   const feature = this.dialogData['feature'];
-  const on = this.dialogData['on'] || false;
+  const on = this.dialogData['on'];
 
   const dataObject = {requestId: requestId, application: application, component: component,
     feature: feature,  on: on};

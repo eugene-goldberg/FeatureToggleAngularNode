@@ -35,7 +35,7 @@
           </td>
           
           <td>
-            <mat-checkbox [checked]=model.on>
+            <mat-checkbox [checked]=model.on (change)="model.on = !model.on">
             </mat-checkbox>
           </td>
 
